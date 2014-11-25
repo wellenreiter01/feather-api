@@ -21,9 +21,7 @@ function getUserHome() {
 
 var home = process.env.INSIGHT_DB || (getUserHome() + '/.insight');
 
-var network = process.env.INSIGHT_NETWORK || 'livenet';
-
-if (network === 'livenet') {
+if (process.env.INSIGHT_NETWORK === 'livenet') {
   env = 'livenet';
   db = home;
   port = '80';
@@ -50,6 +48,8 @@ switch (process.env.NODE_ENV) {
     env += ' - development';
     break;
 }
+
+var network = process.env.INSIGHT_NETWORK || 'livenet';
 
 var dataDir = process.env.BITCOIND_DATADIR;
 var isWin = /^win/.test(process.platform);
